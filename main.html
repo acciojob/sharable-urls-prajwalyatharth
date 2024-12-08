@@ -1,8 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Manipulation</title>
+</head>
+<body>
+  <h3 id="url">https://localhost:8080/</h3>
 
+  <!-- Form -->
+  <form id="dataForm" onsubmit="updateURL(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year" required>
+    <br>
+    <button type="submit" id="button">Submit</button>
+  </form>
+
+  <!-- JavaScript -->
+  <script>
+    function updateURL(event) {
+      event.preventDefault(); // Prevent the form from reloading the page
+      
+      // Get input values
+      const name = document.getElementById("name").value;
+      const year = document.getElementById("year").value;
+      
+      // Create query string
+      const queryString = `?name=${encodeURIComponent(name)}&year=${encodeURIComponent(year)}`;
+      
+      // Update the h3 element
+      const urlElement = document.getElementById("url");
+      urlElement.textContent = `https://localhost:8080/${queryString}`;
+    }
+  </script>
+</body>
 </html>
